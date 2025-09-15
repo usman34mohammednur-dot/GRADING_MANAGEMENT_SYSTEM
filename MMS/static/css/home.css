@@ -1,0 +1,195 @@
+* {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f0f4f8;
+      color: #333;
+    }
+    .logo-container,
+            .logo-right-container {
+                width: 120px;
+                height: 120px;
+                overflow: hidden;
+                border-radius: 50%;
+                border: 2px solid #ffffff;
+                background-color: #fff;
+                box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+                position: absolute;
+                top: -30px;
+            }
+
+            .logo-container {
+                left: 10px;
+                position:absolute;
+                top: 20px;
+                left: 150px;
+
+            }
+
+            .logo-right-container {
+                right: 10px;
+                position: absolute;
+                top: 20px;
+                right: 150px;
+            
+            }
+
+
+            .school-logo {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+            @media screen and (max-width: 600px) {
+
+                .logo-container,
+                .logo-right-container {
+                    width: 50px;
+                    height: 50px;
+                    top: -25px;
+                }
+            }
+            /* Responsive adjustments for tablets and smaller screens */
+    @media (max-width: 768px) {
+        .logo-container,
+        .logo-right-container {
+            width: 90px;
+            height: 90px;
+            top: 10px;
+        }
+
+        .logo-container {
+            left: 20px;
+        }
+
+        .logo-right-container {
+            right: 20px;
+        }
+    }
+
+    /* Further adjustments for very small screens (e.g., phones) */
+    @media (max-width: 480px) {
+        .logo-container,
+        .logo-right-container {
+            width: 70px;
+            height: 70px;
+            top: 10px;
+        }
+
+        .logo-container {
+            left: 10px;
+        }
+
+        .logo-right-container {
+            right: 10px;
+        }
+    }
+
+    header {
+      background: linear-gradient(135deg, #2980b9, #2c3e50);
+      padding: 40px 20px;
+      text-align: center;
+      color: white;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    header h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 1.2em;
+    }
+
+    nav {
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      padding: 15px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav a {
+      color: #2980b9;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #2c3e50;
+    }
+
+    .main {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .main h2 {
+      font-size: 2em;
+      margin-bottom: 20px;
+      color: #2c3e50;
+    }
+
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .feature-box {
+      background: white;
+      border-radius: 15px;
+      padding: 30px;
+      width: 280px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+      transition: 0.3s ease;
+    }
+
+    .feature-box:hover {
+      transform: translateY(-8px);
+    }
+
+    .feature-box h3 {
+      color: #2980b9;
+      margin-bottom: 15px;
+    }
+
+    .feature-box p {
+      color: #555;
+    }
+
+    footer {
+      background: #2c3e50;
+      color: white;
+      text-align: center;
+      padding: 25px 20px;
+      margin-top: 50px;
+    }
+
+    @media (max-width: 768px) {
+      .features {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      header h1 {
+        font-size: 2em;
+      }
+
+      .main h2 {
+        font-size: 1.6em;
+      }
+    }

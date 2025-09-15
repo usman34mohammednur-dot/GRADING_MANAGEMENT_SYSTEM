@@ -1,0 +1,128 @@
+
+<html>
+<head>
+    <title>Login</title>
+</head>
+<style>
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Body Background with animated gradient */
+        body {
+            height: 100vh;
+            background: linear-gradient(-45deg, #ff6b6b, #f8e71c, #17ead9, #6078ea);
+            background-size: 400% 400%;
+            animation: gradientShift 10s ease infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Login Container */
+        form {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 2rem 3rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+            width: 350px;
+            max-width: 90%;
+            transition: all 0.3s ease;
+        }
+
+        /* Form Inputs */
+        form p {
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            outline: none;
+            border-radius: 10px;
+            margin:10px 0px;
+            font-size: 16px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        input:focus {
+            background-color: #f0f0f0;
+            transform: scale(1.02);
+        }
+
+        /* Submit Button */
+        button[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background-color: #4a00e0;
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #8e2de2;
+        }
+
+        /* Back Button */
+        a {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            text-decoration: none;
+            font-size: 22px;
+            background: #ffffff22;
+            padding: 8px 12px;
+            border-radius: 50%;
+            color: #fff;
+            
+        }
+
+        a:hover {
+            background: #ffffff44;
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+</style>
+
+<body>
+    <a href="{% url 'core:home' %}">⬅️</a>
+    
+    <form method="post">
+        <h1>Login</h1>
+        {% csrf_token %}
+        <input name="username" type="text" placeholder="Enter username">
+        <input name="password" type="password" placeholder="Enter Pwd" style="margin-bottom:20px;">
+        <button type="submit">Log In</button>
+    </form>
+    
+</body>
+</html>

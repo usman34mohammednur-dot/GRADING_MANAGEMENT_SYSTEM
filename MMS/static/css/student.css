@@ -1,0 +1,158 @@
+body {
+                font-family: Arial, sans-serif;
+                background: #f0f0f0;
+                margin: 0;
+                padding: 0;
+            }
+
+            .cover {
+                background: #2c3e50;
+                color: white;
+                padding: 60px 20px;
+                text-align: center;
+            }
+
+
+            .cover h1 {
+                font-size: 28px;
+                margin-bottom: 10px;
+            }
+
+            .cover p {
+                font-size: 16px;
+                margin: 0;
+            }
+
+            .login-box {
+                margin: -40px auto 30px;
+                padding: 40px 20px;
+                background: white;
+                width: 90%;
+                max-width: 600px;
+                border-radius: 15px;
+                box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+                position: relative;
+            }
+
+            .logo-container,
+            .logo-right-container {
+                width: 120px;
+                height: 120px;
+                overflow: hidden;
+                border-radius: 50%;
+                border: 2px solid #ffffff;
+                background-color: #fff;
+                box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+                position: absolute;
+                top: -30px;
+            }
+
+            .logo-container {
+                left: 10px;
+                position:absolute;
+                top: 20px;
+                left: 150px;
+
+            }
+
+            .logo-right-container {
+                right: 10px;
+                position: absolute;
+                top: 20px;
+                right: 150px;
+            
+            }
+
+
+            .school-logo {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .login-box h2 {
+                margin-top: 20px;
+                font-size: 22px;
+                color: #333;
+            }
+
+            .login-box input,
+            .login-box select {
+                width: 90%;
+                padding: 10px;
+                margin: 10px 0;
+                border: 1px solid #ccc;
+                border-radius: 6px;
+                font-size: 14px;
+            }
+
+            .login-box button {
+                padding: 12px 25px;
+                background: #2980b9;
+                color: white;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+                font-size: 15px;
+                margin-top: 10px;
+                transition: background 0.3s ease;
+            }
+
+            .login-box button:hover {
+                background: #2471a3;
+            }
+
+            #marks-section {
+                margin-top: 20px;
+            }
+
+            label {
+                font-weight: bold;
+                display: block;
+                margin-bottom: 5px;
+            }
+
+            @media screen and (max-width: 600px) {
+
+                .logo-container,
+                .logo-right-container {
+                    width: 50px;
+                    height: 50px;
+                    top: -25px;
+                }
+            }
+            /* Responsive adjustments for tablets and smaller screens */
+    @media (max-width: 768px) {
+        .logo-container,
+        .logo-right-container {
+            width: 90px;
+            height: 90px;
+            top: 10px;
+        }
+
+        .logo-container {
+            left: 20px;
+        }
+
+        .logo-right-container {
+            right: 20px;
+        }
+    }
+
+    /* Further adjustments for very small screens (e.g., phones) */
+    @media (max-width: 480px) {
+        .logo-container,
+        .logo-right-container {
+            width: 70px;
+            height: 70px;
+            top: 10px;
+        }
+
+        .logo-container {
+            left: 10px;
+        }
+
+        .logo-right-container {
+            right: 10px;
+        }
+    }

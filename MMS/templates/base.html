@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock title %}</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link href="{% static "css/tailwind.min.css" %}" rel="stylesheet">
+    
+</head>
+<body>
+    <header>
+    <h1 style="color:#fff;">WEL COME TO MARKING MANAGEMENT SYSTEM</h1>
+    <p>Your Result Hub</p>
+  </header>
+
+  <nav>
+    <a href="{% url 'core:home' %}">Home</a>
+    <a href="{% url 'core:student_access' %}">Student</a>
+    <a href="{% url 'core:teacher_dashboard' %}">Teacher</a>
+    <a href="{% url 'core:login' %}">Login</a>
+    {% if request.user.is_authenticated %}
+      <a href="{% url 'core:logout' %}">Logout</a>
+      <a href="{% url 'core:admin_dashboard' %}">Dashboard</a>
+    {% endif %}
+    <a href="{% url 'core:about' %}">About</a>
+  </nav>
+    {% block content %}
+    {% endblock content %}
+    <footer>
+    &copy; 2025 USMAN'S MARKING MANAGEMENT SYSTEM. All rights reserved.
+  </footer>
+</body>
+</html>

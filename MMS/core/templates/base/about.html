@@ -1,0 +1,28 @@
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock title %}</title>
+    <link rel="stylesheet" href="{% static 'css/about.css' %}">
+</head>
+<body>
+   
+  <a href="{% url "core:home" %}" class="back-home">Home</a>
+  <div class="overlay">
+    <h1>Mark Management System</h1>
+    <p>Welcome to <strong>Mark Management System (MMS)</strong> — a user‑friendly platform built to simplify student academic records management.</p>
+    <p><strong>Developed by Usman Mohammednur</strong>, MMS offers a clear interface for teachers to submit student marks and for students to retrieve their results using name, code, and grade.</p>
+    <p>Designed for Ifa Boru Special Boarding School Grades 9–12, supporting both Natural and Social streams, MMS ensures accurate academic tracking for all students.</p>
+    <h2>Key Features:</h2>
+    <ul>
+      <li>Teacher Submission Page: Secure and structured input of student data and marks.</li>
+      <li>Student Portal: Instant access to individual academic performance.</li>
+      <li>Clean, responsive design: Works well on smartphones, tablets, and desktops.</li>
+    </ul>
+    <div class="signature">— Developed by Usman Mohammednur</div>
+  </div>
+</div>
+
+</body>
+</html>

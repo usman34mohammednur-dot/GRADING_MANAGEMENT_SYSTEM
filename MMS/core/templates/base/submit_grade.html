@@ -1,0 +1,464 @@
+{% load static %}
+{% load custom_filters %}
+<!DOCTYPE html>
+<html lang="en"> 
+<head> 
+  <meta charset="UTF-8"> 
+  <title>Teachers Submission Page</title> 
+   
+  <style> 
+     * {
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background:whitesmoke;
+}
+
+.form-container {
+  background:whitesmoke;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  max-width: 1100px;
+  margin: 60px auto;
+  position: relative;
+  animation: fadeIn 0.6s ease-out;
+}
+
+.logo-container, .logo-right-container {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  position: absolute;
+  top: 25px;
+  transition: transform 0.3s ease;
+}
+
+.logo-container:hover, .logo-right-container:hover {
+  transform: scale(1.05) rotate(5deg);
+}
+
+.logo-container {
+  left: 40px;
+}
+
+.logo-right-container {
+  right: 40px;
+}
+
+.logo-container img, .logo-right-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+h2 {
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 0;
+  padding-top: 30px;
+}
+
+.form-group {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  width: 100%;
+  max-width: 200px;
+  font-weight: 600;
+  color: #333;
+}
+
+.form-group input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background: #f9f9f9;
+  transition: border 0.3s ease;
+}
+
+.form-group input:focus {
+  border-color: #2c3e50;
+  background-color: #fff;
+  outline: none;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 50px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+th, td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #e0e0e0;
+}
+
+th {
+  background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);
+  color: white;
+  font-size: 13px;
+  text-transform: uppercase;
+}
+
+tr:nth-child(even) {
+  background: #f9fafc;
+}
+
+tr:hover {
+  background: #f1f3f5;
+}
+
+td.subject-label {
+  text-align: left;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+td input {
+  width: 90%;
+  padding: 6px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 13px;
+}
+
+.footer-pair {
+  display: flex;
+  gap: 15px;
+  margin-top: 25px;
+  align-items: center;
+}
+
+.footer-pair label {
+  font-weight: bold;
+  width: 180px;
+}
+
+.footer-pair input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+button {
+  background: linear-gradient(135deg, #2c3e50, #1a252f);
+  color: #fff;
+  border: none;
+  padding: 14px 28px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 40px auto 0;
+  display: block;
+  text-transform: uppercase;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background: #1a252f;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(44, 62, 80, 0.3);
+}
+
+input[type="text"]:disabled {
+  background-color: #e9ecef;
+  color: #495057;
+}
+
+.total-row input {
+  background-color: #e3f2fd;
+}
+
+.average-row input {
+  background-color: #e8f5e9;
+}
+
+.rank-row input {
+  background-color: #fff3e0;
+}
+
+.rank-fields {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #dee2e6;
+}
+
+.rank-fields label {
+  font-weight: 600;
+  color: #2c3e50;
+  margin-right: 10px;
+}
+
+.rank-fields input {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ced4da;
+  width: 80px;
+}
+
+.error-message {
+  color: #dc3545;
+  font-size: 0.875em;
+  margin-top: 5px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .form-group {
+    flex-direction: column;
+  }
+
+  .form-group label {
+    width: 100%;
+    margin-bottom: 6px;
+  }
+
+  .logo-container, .logo-right-container {
+    display: none;
+  }
+
+  .footer-pair {
+    flex-direction: column;
+  }
+
+  .footer-pair label {
+    width: 100%;
+  }
+  
+  .rank-fields {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .rank-fields input {
+    width: 100%;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+  </style> 
+</head> 
+<body> 
+  <div class="form-container"> 
+    <h2><b>BEDELE IFA BORU SPECIAL BOARDING SECONDARY SCHOOL</b></h2> 
+    <h2>
+      {% if is_editing %}
+        Edit Grades for {{ student.first_name }} {{ student.second_name }}
+      {% else %}
+        Add Grades for {{ student.first_name }} {{ student.second_name }}
+      {% endif %}
+    </h2> 
+    <div class="logo-container"> 
+      <img src="{% static 'assets/OROMIA.jpg' %}" alt="Left Logo" class="school-logo" />
+    </div> 
+    <div class="logo-right-container"> 
+      <img src="{% static 'assets/BEDDELLE.jpg' %}" alt="Right Logo" class="school-logo" />
+    </div> 
+
+    <h2>Students Submission Page</h2> 
+
+    <form method="post" id="gradeForm">
+      {% csrf_token %}
+      
+      <!-- Basic Info --> 
+      <div class="form-group">
+        <label>First Name:</label>
+        {{ student_form.first_name }}
+        {% if student_form.first_name.errors %}
+          <div class="error-message">{{ student_form.first_name.errors }}</div>
+        {% endif %}
+      </div>
+      
+      <div class="form-group">
+        <label>Second Name:</label>
+        {{ student_form.second_name }}
+        {% if student_form.second_name.errors %}
+          <div class="error-message">{{ student_form.second_name.errors }}</div>
+        {% endif %}
+      </div>
+      
+      <div class="form-group">
+        <label>Code:</label>
+        {{ student_form.code }}
+        {% if student_form.code.errors %}
+          <div class="error-message">{{ student_form.code.errors }}</div>
+        {% endif %}
+      </div>
+      
+      <div class="form-group">
+        <label>Grade:</label>
+        {{ student_form.grade }}
+        {% if student_form.grade.errors %}
+          <div class="error-message">{{ student_form.grade.errors }}</div>
+        {% endif %}
+      </div>
+
+
+      <table> 
+        <tr> 
+          <th>Subject</th> 
+          <th>1st Semester</th> 
+          <th>2nd Semester</th> 
+          <th>Average</th> 
+        </tr> 
+        {% for subject in subjects %}
+        <tr class="tr">
+          <td class="subject-label">{{ subject.name }}</td>
+          {% with grade=grades|get_item:subject.id %}
+            <td>
+              <input type="number" name="sem1_{{ subject.id }}" value="{{ grade.semester1_score|default_if_none:'' }}" min="0" max="100" step="0.01">
+            </td>
+            <td>
+              <input type="number" name="sem2_{{ subject.id }}" value="{{ grade.semester2_score|default_if_none:'' }}" min="0" max="100" step="0.01">
+            </td>
+            <td>
+              <input type="text" class="average-field" readonly 
+                     value="{% if grade %}{{ grade.average_score|floatformat:2|default:'' }}{% endif %}">
+            </td>
+          {% endwith %}
+        </tr>
+        {% endfor %}
+        <tr class="total-row tr">
+          <td class="subject-label">Total</td>
+          <td><input type="text" id="total-sem1" readonly></td>
+          <td><input type="text" id="total-sem2" readonly></td>
+          <td><input type="text" id="total-avg" readonly></td>
+        </tr>
+        <tr class="average-row tr">
+          <td class="subject-label">Average</td>
+          <td><input type="text" id="avg-sem1" readonly></td>
+          <td><input type="text" id="avg-sem2" readonly></td>
+          <td><input type="text" id="avg-avg" readonly></td>
+        </tr>
+        <tr class="atrsug">
+          <td>Rank</td>
+          <td><input type="number" name="sem1_rank" value="{{ ranks.1.rank|default_if_none:'' }}" min="1" max="100"></td>
+          <td><input type="number" name="sem2_rank" value="{{ ranks.2.rank|default_if_none:'' }}" min="1"></td>
+          <td><input type="number" name="annual_rank" value="{{ ranks.A.rank|default_if_none:'' }}" min="1"></td>
+        </tr>
+      </table>
+      
+      <!-- Teacher Info --> 
+      <div class="footer-pair"> 
+        <label><b>Homeroom Teacher Name: </b></label> 
+        {{ student_form.homeroom_teacher }}
+      </div> 
+      <div class="footer-pair"> 
+        <label><b>Director Name: </b></label> 
+        {{ student_form.director }}
+      </div> 
+
+      <button type="submit">Submit</button> 
+    </form>
+  </div> 
+
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('gradeForm');
+    const table = document.querySelector('table');
+    
+    // Function to calculate averages for each subject
+    function calculateSubjectAverages() {
+      const subjectRows = Array.from(document.querySelectorAll('.tr')).slice(1, -2);
+      
+      subjectRows.forEach(row => {
+        const sem1Input = row.querySelector('td:nth-child(2) input');
+        const sem2Input = row.querySelector('td:nth-child(3) input');
+        const avgInput = row.querySelector('td:nth-child(4) input');
+        
+        const sem1 = parseFloat(sem1Input.value) || 0;
+        const sem2 = parseFloat(sem2Input.value) || 0;
+        
+        if (sem1 > 0 || sem2 > 0) {
+          const avg = (sem1 + sem2) / 2;
+          avgInput.value = avg.toFixed(2);
+        } else {
+          avgInput.value = '';
+        }
+      });
+    }
+    
+    // Function to calculate totals and overall averages
+    function calculateTotalsAndAverages() {
+      const subjectRows = Array.from(document.querySelectorAll('.tr')).slice(1, -2);
+      let sem1Total = 0, sem2Total = 0, avgTotal = 0;
+      let validSubjectCount = 0;
+      
+      subjectRows.forEach(row => {
+        const sem1Input = row.querySelector('td:nth-child(2) input');
+        const sem2Input = row.querySelector('td:nth-child(3) input');
+        const avgInput = row.querySelector('td:nth-child(4) input');
+        
+        const sem1 = parseFloat(sem1Input.value) || 0;
+        const sem2 = parseFloat(sem2Input.value) || 0;
+        const avg = parseFloat(avgInput.value) || 0;
+        
+        if (sem1 > 0 || sem2 > 0) {
+          validSubjectCount++;
+          sem1Total += sem1;
+          sem2Total += sem2;
+          avgTotal += avg;
+        }
+      });
+      
+      // Update TOTAL row
+      document.getElementById('total-sem1').value = sem1Total.toFixed(2);
+      document.getElementById('total-sem2').value = sem2Total.toFixed(2);
+      document.getElementById('total-avg').value = avgTotal.toFixed(2);
+      
+      // Update AVERAGE row
+      if (validSubjectCount > 0) {
+        document.getElementById('avg-sem1').value = (sem1Total / validSubjectCount).toFixed(2);
+        document.getElementById('avg-sem2').value = (sem2Total / validSubjectCount).toFixed(2);
+        document.getElementById('avg-avg').value = (avgTotal / validSubjectCount).toFixed(2);
+      } else {
+        document.getElementById('avg-sem1').value = '0.00';
+        document.getElementById('avg-sem2').value = '0.00';
+        document.getElementById('avg-avg').value = '0.00';
+      }
+    }
+    
+    // Set up event listeners for all input fields
+    table.addEventListener('input', function(e) {
+      if (e.target.tagName === 'INPUT' && !e.target.readOnly) {
+        calculateSubjectAverages();
+        calculateTotalsAndAverages();
+      }
+    });
+    
+    // Initialize calculations
+    calculateSubjectAverages();
+    calculateTotalsAndAverages();
+  });
+  </script>
+
+</body> 
+</html>

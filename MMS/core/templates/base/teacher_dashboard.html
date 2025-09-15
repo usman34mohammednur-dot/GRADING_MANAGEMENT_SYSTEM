@@ -1,0 +1,156 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Teacher Dashboard</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f4f8;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      width: 95%;
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 30px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    th, td {
+      padding: 12px 16px;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+
+    th {
+      background-color: #2c3e50;
+      color: white;
+      text-transform: uppercase;
+      font-size: 14px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    tr:hover {
+      background-color: #eef2f7;
+    }
+
+    .btn {
+      padding: 8px 15px;
+      border: none;
+      border-radius: 6px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 14px;
+      transition: background 0.3s ease;
+    }
+
+    .btn-add {
+      background-color: #27ae60;
+    }
+
+    .btn-add:hover {
+      background-color: #219150;
+    }
+
+    .btn-edit {
+      background-color: #2980b9;
+    }
+
+    .btn-edit:hover {
+      background-color: #1f5d8a;
+    }
+
+    @media (max-width: 768px) {
+      table, thead, tbody, th, td, tr {
+        display: block;
+      }
+
+      th {
+        display: none;
+      }
+
+      tr {
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        padding: 10px;
+        background: #fff;
+      }
+
+      td {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px;
+        font-size: 14px;
+      }
+
+      td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        color: #2c3e50;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="{% url 'core:logout' %}" style="color:#fff; background: #dc3545; text-decoration: none; margin:1rem 1rem 0rem; border: 0; border-radius: 5px; padding: 1rem;" >Logout</a>
+  <a href="{% url 'core:home' %}" style="color:#fff; background: #1f6093ff; text-decoration: none; margin:1rem 1rem 0rem; border: 0; border-radius: 5px; padding: 1rem;" >Home</a>
+  <div class="container">
+    <h2>Welcome, {{ teacher.user.get_full_name }} (Class: {{ teacher.class_room }})</h2>
+
+    {% if student_status %}
+      <table>
+        <thead>
+          <tr>
+            <th>Student Code</th>
+            <th>Full Name</th>
+            <th>Grade</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for entry in student_status %}
+            <tr>
+              <td data-label="Code">{{ entry.student.code }}</td>
+              <td data-label="Full Name">{{ entry.student.first_name }} {{ entry.student.second_name }}</td>
+              <td data-label="Grade">{{ entry.student.grade }}</td>
+              <td data-label="Action">
+                {% if entry.has_grades %}
+                  <a class="btn btn-edit" href="{% url 'core:submit_grades' entry.student.id %}">✏️ Edit Grades</a>
+                {% else %}
+                  <a class="btn btn-add" href="{% url 'core:submit_grades' entry.student.id %}">➕ Add Grades</a>
+                {% endif %}
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p>No students assigned to you yet.</p>
+    {% endif %}
+  </div>
+</body>
+</html>

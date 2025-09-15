@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Student Marks</title>
+    <link rel="stylesheet" href="{% static 'css/student.css' %}">
+</head>
+<body>
+    <div class="cover">
+        <div class="logo-container">
+            <img src="{% static 'assets/OROMIA.jpg' %}" alt="School Logo" class="school-logo" />
+        </div>
+        <div class="logo-right-container">
+            <img src="{% static 'assets/BEDDELLE.jpg' %}" alt="Right Logo" class="school-logo" />
+        </div>
+        <h1><a href="{% url 'core:home' %}" style="color: #fff; text-decoration: none;">
+            BEDELE IFA BORU SPECIAL BOARDING SECONDARY SCHOOL
+        </a></h1>
+        <p>Welcome!</p>
+    </div>
+
+    <div id="login" class="login-box">
+        <h2>View Your Marks</h2>
+
+        {% if error %}
+            <p style="color: red; font-weight: bold;">{{ error }}</p>
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+            <input type="text" name="name" placeholder="First Name" required />
+            <input type="text" name="code" placeholder="Student Code" required />
+            <input type="text" name="grade" placeholder="Grade and Section" required />
+
+
+            <button type="submit">See Marks</button>
+        </form>
+    </div>
+</body>
+</html>
